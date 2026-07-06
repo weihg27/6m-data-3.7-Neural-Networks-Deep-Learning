@@ -196,6 +196,27 @@ footer .stamp{font-style:normal;font-weight:300}
 .xor-tag.good{background:var(--ntu-blue);color:#fff;border-color:var(--ntu-blue)}
 .xor-tag.bad{color:#5F6B7A}
 ::selection{background:var(--ntu-crimson);color:#fff}
+
+/* ===== NN anatomy animation (section 1b) ===== */
+.nn{display:grid;grid-template-columns:.9fr 1.4fr;gap:28px;align-items:start}
+@media (max-width:900px){.nn{grid-template-columns:1fr}}
+.nn-ctrl{background:var(--paper-2);border:1px solid var(--rule);padding:22px}
+.nn-ctrl label{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);display:block;margin-top:14px}
+.nn-ctrl input[type=range]{width:100%;accent-color:var(--accent);margin-top:6px}
+.nn-btns{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.nn-btn{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border:1px solid var(--rule);background:var(--ntu-navy);color:#fff;cursor:pointer}
+.nn-btn.alt{background:var(--ntu-crimson)}
+.nn-btn:disabled{opacity:.45;cursor:default}
+.nn-vis{background:var(--paper-2);border:1px solid var(--rule);padding:22px}
+.nn-svg{width:100%;height:380px;display:block}
+.nn-caption{font-family:'Open Sans',sans-serif;font-size:.95rem;color:var(--ink-2);margin-top:12px;min-height:3.2em;line-height:1.55}
+.nn-caption em{font-style:normal;font-weight:700;color:var(--ntu-crimson)}
+.nn-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.nn-legend span::before{content:"";display:inline-block;width:18px;height:3px;margin-right:6px;vertical-align:middle}
+.nn-legend .pos::before{background:var(--ntu-blue)}
+.nn-legend .neg::before{background:var(--ntu-crimson)}
+.nn-out{font-family:'Open Sans',sans-serif;font-weight:300;font-size:2rem;margin-top:8px;color:var(--ink)}
+.nn-out b{font-weight:700;color:var(--ntu-crimson)}
 </style>
 </head>
 <body>
@@ -262,9 +283,45 @@ footer .stamp{font-style:normal;font-weight:300}
   </div>
 </section>
 
-<section id="s2">
+<section id="s1b">
   <div class="section-head">
     <div class="section-num">II.</div>
+    <div class="section-title">
+      <div class="label">The anatomy &middot; animated</div>
+      <h2>Watch a network <em>think.</em></h2>
+      <p class="deck">Three of Sarah's session features go in on the left. Press <span class="mono">FORWARD PASS</span> and watch the numbers flow through the network to a prediction. Then press <span class="mono">LEARN</span> to see the error travel <em>backwards</em>, nudging every connection &mdash; that single backwards ripple, repeated thousands of times, is all "training" is.</p>
+    </div>
+  </div>
+
+  <div class="nn">
+    <div class="nn-ctrl">
+      <h3>One shopper's session</h3>
+      <label>pages viewed &middot; <span class="mono" id="nnX1V">8</span></label>
+      <input type="range" id="nnX1" min="0" max="20" value="8">
+      <label>cart value &middot; $<span class="mono" id="nnX2V">120</span></label>
+      <input type="range" id="nnX2" min="0" max="300" value="120">
+      <label>minutes on site &middot; <span class="mono" id="nnX3V">12</span></label>
+      <input type="range" id="nnX3" min="0" max="30" value="12">
+      <div class="nn-btns">
+        <button class="nn-btn" id="nnPlay">&#9654; Forward pass</button>
+        <button class="nn-btn alt" id="nnLearn" disabled>&#8635; Learn</button>
+        <button class="nn-btn" id="nnReset" disabled style="background:#5F6B7A">&#8634; Reset</button>
+      </div>
+      <div class="nn-legend"><span class="pos">positive weight</span><span class="neg">negative weight</span></div>
+      <p style="font-family:'Open Sans',sans-serif;font-size:.9rem;color:var(--ink-2);margin-top:16px;line-height:1.55">Thicker line = bigger weight = that input matters more to that detector. The four middle circles are <b>hidden neurons</b> &mdash; think of them as pattern detectors the network invented for itself (nobody programmed "bargain hunter"; it emerged from training).</p>
+    </div>
+
+    <div class="nn-vis">
+      <svg class="nn-svg" id="nnSvg" viewBox="0 0 640 380" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="nn-out">Will they complete checkout? <b id="nnProb">&mdash;</b></div>
+      <div class="nn-caption" id="nnCap">Set the sliders, then press <em>Forward pass</em>. Each connection multiplies its input by a weight; each neuron adds up what arrives and passes it on only if the total is positive (that little gate is ReLU).</div>
+    </div>
+  </div>
+</section>
+
+<section id="s2">
+  <div class="section-head">
+    <div class="section-num">III.</div>
     <div class="section-title">
       <div class="label">The engine</div>
       <h2>Gradient descent. <em>One knob</em> matters most.</h2>
@@ -300,7 +357,7 @@ footer .stamp{font-style:normal;font-weight:300}
 
 <section id="s3">
   <div class="section-head">
-    <div class="section-num">III.</div>
+    <div class="section-num">IV.</div>
     <div class="section-title">
       <div class="label">The template</div>
       <h2>Memorise these <em>five lines.</em></h2>
@@ -326,7 +383,7 @@ footer .stamp{font-style:normal;font-weight:300}
 
 <section id="s4">
   <div class="section-head">
-    <div class="section-num">IV.</div>
+    <div class="section-num">V.</div>
     <div class="section-title">
       <div class="label">A checklist</div>
       <h2>Three checks before you blame the <em>architecture.</em></h2>
@@ -348,7 +405,7 @@ footer .stamp{font-style:normal;font-weight:300}
 
 <section id="s5">
   <div class="section-head">
-    <div class="section-num">V.</div>
+    <div class="section-num">VI.</div>
     <div class="section-title">
       <div class="label">Check yourself</div>
       <h2>Nine questions from the <em>field notebook.</em></h2>
@@ -371,7 +428,7 @@ footer .stamp{font-style:normal;font-weight:300}
 
 <section id="s6">
   <div class="section-head">
-    <div class="section-num">VI.</div>
+    <div class="section-num">VII.</div>
     <div class="section-title">
       <div class="label">A roadmap</div>
       <h2>The five lines stay the <em>same.</em></h2>
@@ -584,6 +641,204 @@ footer .stamp{font-style:normal;font-weight:300}
   lrEl.addEventListener('input', render);
   w0El.addEventListener('input', render);
   render();
+})();
+
+(function(){
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.getElementById('nnSvg');
+  const cap=document.getElementById('nnCap');
+  const probEl=document.getElementById('nnProb');
+  const playBtn=document.getElementById('nnPlay');
+  const learnBtn=document.getElementById('nnLearn');
+  const resetBtn=document.getElementById('nnReset');
+  const sliders=['nnX1','nnX2','nnX3'].map(id=>document.getElementById(id));
+  const vals=['nnX1V','nnX2V','nnX3V'].map(id=>document.getElementById(id));
+  const NAVY='#2C5697', CRIM='#C8102E', INK='#1B2A4A';
+
+  // Starting weights (a plausible part-trained network). LEARN really updates them.
+  const W1_0=[[2.0,-1.5,0.5],[-0.5,2.2,0.3],[1.0,1.0,-2.0],[-1.2,-0.8,2.5]];
+  const B1_0=[-0.3,-0.2,0.1,-0.4];
+  const W2_0=[-1.0,2.5,2.0,-2.2], B2_0=-0.5;
+  let W1=W1_0.map(r=>r.slice()), B1=B1_0.slice(), W2=W2_0.slice(), B2=B2_0;
+  const HID_NAMES=['"bargain hunter"','"big basket"','"quick + decisive"','"lingerer"'];
+  const IN_NAMES=['pages','cart $','minutes'];
+
+  // Layout
+  const IX=70, HX=320, OX=570;
+  const IY=[90,190,290], HY=[60,150,240,330], OY=190;
+  let edges1=[], edges2=[], inNodes=[], hidNodes=[], outNode=null, pulseLayer=null;
+  let inTexts=[], hidTexts=[], outText=null;
+
+  function el(t,attrs){const e=document.createElementNS(NS,t);for(const k in attrs)e.setAttribute(k,attrs[k]);return e;}
+  function build(){
+    svg.innerHTML=''; edges1=[]; edges2=[]; inNodes=[]; hidNodes=[]; inTexts=[]; hidTexts=[];
+    // edges input->hidden
+    for(let h=0;h<4;h++){ edges1[h]=[];
+      for(let i=0;i<3;i++){
+        const w=W1[h][i];
+        const ln=el('line',{x1:IX,y1:IY[i],x2:HX,y2:HY[h],stroke:w>=0?NAVY:CRIM,'stroke-width':Math.max(1,Math.abs(w)*2.2),opacity:.45});
+        svg.appendChild(ln); edges1[h][i]=ln;
+      }}
+    for(let h=0;h<4;h++){
+      const w=W2[h];
+      const ln=el('line',{x1:HX,y1:HY[h],x2:OX,y2:OY,stroke:w>=0?NAVY:CRIM,'stroke-width':Math.max(1,Math.abs(w)*2.2),opacity:.45});
+      svg.appendChild(ln); edges2[h]=ln;
+    }
+    pulseLayer=el('g',{}); svg.appendChild(pulseLayer);
+    // nodes
+    for(let i=0;i<3;i++){
+      svg.appendChild(el('circle',{cx:IX,cy:IY[i],r:22,fill:'#F4F5F7',stroke:INK,'stroke-width':1.5}));
+      const t=el('text',{x:IX,y:IY[i]+5,'text-anchor':'middle','font-family':'JetBrains Mono, monospace','font-size':'13','fill':INK}); t.textContent='?'; svg.appendChild(t); inTexts.push(t);
+      const lab=el('text',{x:IX,y:IY[i]-30,'text-anchor':'middle','font-family':'Open Sans, sans-serif','font-size':'12','fill':'#5F6B7A'}); lab.textContent=IN_NAMES[i]; svg.appendChild(lab);
+    }
+    for(let h=0;h<4;h++){
+      const c=el('circle',{cx:HX,cy:HY[h],r:24,fill:'#F4F5F7',stroke:INK,'stroke-width':1.5}); svg.appendChild(c); hidNodes.push(c);
+      const t=el('text',{x:HX,y:HY[h]+5,'text-anchor':'middle','font-family':'JetBrains Mono, monospace','font-size':'12','fill':INK}); t.textContent=''; svg.appendChild(t); hidTexts.push(t);
+      const lab=el('text',{x:HX,y:HY[h]-32,'text-anchor':'middle','font-family':'Open Sans, sans-serif','font-size':'11','fill':'#5F6B7A'}); lab.textContent=HID_NAMES[h]; svg.appendChild(lab);
+    }
+    outNode=el('circle',{cx:OX,cy:OY,r:28,fill:'#F4F5F7',stroke:INK,'stroke-width':2}); svg.appendChild(outNode);
+    outText=el('text',{x:OX,y:OY+5,'text-anchor':'middle','font-family':'JetBrains Mono, monospace','font-size':'13','fill':INK}); outText.textContent='?'; svg.appendChild(outText);
+    const olab=el('text',{x:OX,y:OY-38,'text-anchor':'middle','font-family':'Open Sans, sans-serif','font-size':'12','fill':'#5F6B7A'}); olab.textContent='checkout?'; svg.appendChild(olab);
+  }
+
+  function inputs(){
+    const x=[+sliders[0].value/20,+sliders[1].value/300,+sliders[2].value/30];
+    vals[0].textContent=sliders[0].value; vals[1].textContent=sliders[1].value; vals[2].textContent=sliders[2].value;
+    return x;
+  }
+  function forwardMath(x){
+    const h=[],pre=[];
+    for(let i=0;i<4;i++){let z=B1[i];for(let j=0;j<3;j++)z+=W1[i][j]*x[j];pre.push(z);h.push(Math.max(0,z));}
+    let z2=B2;for(let i=0;i<4;i++)z2+=W2[i]*h[i];
+    const p=1/(1+Math.exp(-z2));
+    return {h,pre,p};
+  }
+
+  function flashEdge(ln, delta){
+    const x1=+ln.getAttribute('x1'), y1=+ln.getAttribute('y1'), x2=+ln.getAttribute('x2'), y2=+ln.getAttribute('y2');
+    const baseW=+ln.getAttribute('stroke-width');
+    let k=0;
+    const iv=setInterval(()=>{                       // 3 quick pulses of thickness+opacity
+      k++;
+      ln.setAttribute('stroke-width', k%2? baseW+2.5 : baseW);
+      ln.setAttribute('opacity', k%2? .95 : .45);
+      if(k>=6){clearInterval(iv); ln.setAttribute('stroke-width',baseW); ln.setAttribute('opacity',.45);}
+    },160);
+    const t=el('text',{x:(x1+x2)/2,y:(y1+y2)/2-4,'text-anchor':'middle','font-family':'JetBrains Mono, monospace','font-size':'11','font-weight':'700','fill':delta>0?'#2C5697':'#C8102E'});
+    t.textContent=(delta>0?'▲':'▼')+Math.abs(delta).toFixed(2);
+    pulseLayer.appendChild(t);
+    setTimeout(()=>t.remove(),2600);
+  }
+
+  let animating=false;
+  function pulse(x1,y1,x2,y2,color,delay,dur){
+    return new Promise(res=>{
+      setTimeout(()=>{
+        const c=el('circle',{r:5,fill:color,opacity:.95}); pulseLayer.appendChild(c);
+        const t0=performance.now();
+        (function step(t){
+          const k=Math.min(1,(t-t0)/dur);
+          c.setAttribute('cx',x1+(x2-x1)*k); c.setAttribute('cy',y1+(y2-y1)*k);
+          if(k<1) requestAnimationFrame(step); else {c.remove();res();}
+        })(t0);
+      },delay);
+    });
+  }
+
+  async function playForward(){
+    if(animating) return; animating=true; playBtn.disabled=true; learnBtn.disabled=true;
+    build();
+    const x=inputs(), r=forwardMath(x);
+    for(let i=0;i<3;i++) inTexts[i].textContent=x[i].toFixed(2);
+    cap.innerHTML='Step 1 &mdash; the three inputs (scaled to 0&ndash;1) travel along every connection, each multiplied by that connection\'s <em>weight</em>.';
+    probEl.textContent='…';
+    const jobs=[];
+    for(let h=0;h<4;h++)for(let i=0;i<3;i++)
+      jobs.push(pulse(IX,IY[i],HX,HY[h], W1[h][i]>=0?NAVY:CRIM, i*120, 900));
+    await Promise.all(jobs);
+    for(let h=0;h<4;h++){
+      hidNodes[h].setAttribute('fill', r.h[h]>0 ? '#DCE6F5' : '#F4F5F7');
+      hidNodes[h].setAttribute('stroke', r.h[h]>0 ? NAVY : '#B7BEC9');
+      hidTexts[h].textContent=r.h[h].toFixed(2);
+    }
+    cap.innerHTML='Step 2 &mdash; each hidden neuron adds up what arrived (+ its bias). ReLU then acts as a gate: a <em>positive</em> total passes through, a negative total becomes 0 (that detector stays silent for this shopper).';
+    await new Promise(r2=>setTimeout(r2,900));
+    const jobs2=[];
+    for(let h=0;h<4;h++) if(r.h[h]>0) jobs2.push(pulse(HX,HY[h],OX,OY, W2[h]>=0?NAVY:CRIM, h*90, 800));
+    await Promise.all(jobs2);
+    outNode.setAttribute('fill', r.p>=0.5 ? '#DCE6F5' : '#F8D7DD');
+    outText.textContent=(r.p*100).toFixed(0)+'%';
+    probEl.textContent=(r.p*100).toFixed(0)+'% '+(r.p>=0.5?'likely':'unlikely');
+    cap.innerHTML='Step 3 &mdash; the output neuron combines the active detectors and squashes the total into a probability (sigmoid). That\'s the whole forward pass: multiply, add, gate, repeat. Now press <em>Learn</em> to see what training does with a wrong answer.';
+    animating=false; playBtn.disabled=false; learnBtn.disabled=false;
+  }
+
+  async function playLearn(){
+    if(animating) return; animating=true; playBtn.disabled=true; learnBtn.disabled=true;
+    const x=inputs();
+    const before=forwardMath(x);
+    const label = before.p>=0.5 ? 0 : 1;   // pretend reality disagreed — most instructive
+    cap.innerHTML='Suppose reality disagreed: this shopper actually '+(label? 'DID':'did NOT')+' complete checkout, but the network said '+(before.p*100).toFixed(0)+'%. That gap is the <em>loss</em>. Watch the error flow backwards.';
+    await new Promise(r2=>setTimeout(r2,1400));
+    const jobs=[];
+    for(let h=0;h<4;h++) jobs.push(pulse(OX,OY,HX,HY[h],CRIM,h*90,800));
+    await Promise.all(jobs);
+    const jobs2=[];
+    for(let h=0;h<4;h++)for(let i=0;i<3;i++) jobs2.push(pulse(HX,HY[h],IX,IY[i],CRIM,i*100,800));
+    await Promise.all(jobs2);
+
+    // REAL gradient-descent step (logistic loss)
+    const oldW1=W1.map(r=>r.slice()), oldW2=W2.slice();
+    const lr=0.2, d2=before.p-label;               // how wrong, and in which direction
+    for(let h=0;h<4;h++){
+      const dh=(before.pre[h]>0?1:0)*d2*W2[h];     // error credit passed back through ReLU
+      W2[h]-=lr*d2*before.h[h];                    // nudge output-layer weight
+      for(let j=0;j<3;j++) W1[h][j]-=lr*dh*x[j];   // nudge input-layer weights
+      B1[h]-=lr*dh;
+    }
+    B2-=lr*d2;
+
+    // Redraw with UPDATED weights, re-run the forward math, show the new answer
+    build();
+    const after=forwardMath(x);
+    for(let i=0;i<3;i++) inTexts[i].textContent=x[i].toFixed(2);
+    for(let h=0;h<4;h++){
+      hidNodes[h].setAttribute('fill', after.h[h]>0 ? '#DCE6F5' : '#F4F5F7');
+      hidNodes[h].setAttribute('stroke', after.h[h]>0 ? NAVY : '#B7BEC9');
+      hidTexts[h].textContent=after.h[h].toFixed(2);
+    }
+    outNode.setAttribute('fill', after.p>=0.5 ? '#DCE6F5' : '#F8D7DD');
+    outText.textContent=(after.p*100).toFixed(0)+'%';
+    probEl.textContent=(after.p*100).toFixed(0)+'% '+(after.p>=0.5?'likely':'unlikely');
+    // Flash every connection whose weight changed; leave frozen ones dim.
+    // Input-side nudges are small, so a thickness change alone would be invisible.
+    let frozen=0;
+    for(let h=0;h<4;h++){
+      const d=Math.abs(W2[h]-oldW2[h]);
+      if(d>1e-6) flashEdge(edges2[h], W2[h]-oldW2[h]);
+      for(let j=0;j<3;j++){
+        const dj=W1[h][j]-oldW1[h][j];
+        if(Math.abs(dj)>1e-6) flashEdge(edges1[h][j], dj); else {edges1[h][j].setAttribute('opacity',.15); frozen++;}
+      }
+    }
+    const frozenNote = frozen ? ' The faded connections belong to a detector that stayed <em>silent</em> (ReLU gave 0) — a neuron that didn\'t fire gets no blame, so its incoming weights don\'t change this round.' : '';
+    cap.innerHTML='Every flashing connection just changed — including the input-side ones (they get smaller nudges, so we flash them; a fraction-of-a-pixel thickness change would be invisible). ▲ = weight went up, ▼ = down. Prediction moved from <em>'+(before.p*100).toFixed(0)+'%</em> to <em>'+(after.p*100).toFixed(0)+'%</em>, toward the truth ('+(label?'100%':'0%')+').'+frozenNote+' Press <em>Learn</em> again — it keeps improving. <em>Reset</em> restores the start.';
+    animating=false; playBtn.disabled=false; learnBtn.disabled=false; resetBtn.disabled=false;
+  }
+
+  function resetWeights(){
+    W1=W1_0.map(r=>r.slice()); B1=B1_0.slice(); W2=W2_0.slice(); B2=B2_0;
+    build(); const x=inputs(); for(let i=0;i<3;i++) inTexts[i].textContent=x[i].toFixed(2);
+    probEl.textContent='—';
+    cap.innerHTML='Weights restored to their starting values. Run a <em>Forward pass</em> to see the original prediction again.';
+    resetBtn.disabled=true;
+  }
+
+  sliders.forEach(sl=>sl.addEventListener('input',()=>{inputs(); if(!animating){build(); const x=inputs(); for(let i=0;i<3;i++) inTexts[i].textContent=x[i].toFixed(2);}}));
+  playBtn.addEventListener('click',playForward);
+  learnBtn.addEventListener('click',playLearn);
+  resetBtn.addEventListener('click',resetWeights);
+  build(); const x0=inputs(); for(let i=0;i<3;i++) inTexts[i].textContent=x0[i].toFixed(2);
 })();
 
 (function(){

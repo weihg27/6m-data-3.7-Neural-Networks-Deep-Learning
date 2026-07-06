@@ -42,8 +42,9 @@
 
 | Phase | Time | Format |
 |---|---|---|
-| Concept walkthrough | ~90 min | Instructor uses the [**interactive key-concepts walkthrough →**](https://su-ntu-ctp.github.io/6m-data-3.7-Neural-Networks-Deep-Learning/) |
-| Hands-on code-alongs | ~90 min | Three notebooks (~30 min each) |
+| Concept recap (slides) | ~45–60 min | Instructor recaps the key concepts with the lesson slides — you already explored the [interactive key-concepts page](https://su-ntu-ctp.github.io/6m-data-3.7-Neural-Networks-Deep-Learning/) pre-class |
+| Hands-on code-alongs | ~90 min | Three notebooks (~30 min each, including Pause-and-Predict discussion) |
+| Class exit survey | ~15 min | Quick survey to capture what clicked and what didn't — helps shape the next session |
 | (Self-study after class) | self-paced | Each notebook has 🟡 Extension + the assignment |
 
 ---
@@ -54,7 +55,7 @@
 
 **Start here →** [**pre-class.md**](./pre-class.md)
 
-You'll run `01_monday_morning.ipynb` to see the customer-session data + watch a video on neural networks + try three mini-exercises.
+You'll run `01_monday_morning.ipynb` to see the customer-session data + watch a video on neural networks + try three mini-exercises. After the video, explore the [**interactive key-concepts page**](https://su-ntu-ctp.github.io/6m-data-3.7-Neural-Networks-Deep-Learning/) (GitHub Pages).
 
 ---
 
@@ -62,7 +63,7 @@ You'll run `01_monday_morning.ipynb` to see the customer-session data + watch a 
 
 **Short reference & review →** [**lesson.md**](./lesson.md) (overview, key takeaways, training-run checklist, 9-question review, L08→L10 course map)
 
-**Interactive walkthrough →** [**Key Concepts — interactive page**](https://su-ntu-ctp.github.io/6m-data-3.7-Neural-Networks-Deep-Learning/) (the visual walkthrough used in class — revisit any time)
+**Need a recap? →** [**Key Concepts — interactive page**](https://su-ntu-ctp.github.io/6m-data-3.7-Neural-Networks-Deep-Learning/) (the page you explored pre-class — revisit any time)
 
 **Notebooks — run in order:**
 
@@ -111,7 +112,7 @@ lesson.md                              ← Short reference: overview, takeaways,
 reference.md                           ← Phase 3: Further reading + glossary
 environment.yml                        ← Conda environment spec
 docs/
-  index.html                           ← Interactive key-concepts walkthrough (GitHub Pages)
+  index.html                           ← Interactive key-concepts page — explore during pre-class (GitHub Pages)
 notebooks/
   data/
     northstar_sessions.csv             ← 8,000 customer sessions

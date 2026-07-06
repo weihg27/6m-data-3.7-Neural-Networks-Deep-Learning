@@ -18,6 +18,8 @@ This is the simplest version of "show up prepared": watch a short intro, run one
 
 A short orientation to the week: why L07 is the bridge from classical ML to deep learning, and what Sarah is about to build for Marcus's checkout-completion question. Watch it before opening the notebook.
 
+🕹️ **After the video:** open the [interactive key-concepts page](https://su-ntu-ctp.github.io/6m-data-3.7-Neural-Networks-Deep-Learning/) and play with it for 10–15 minutes. Drag the sliders, click the buttons — you can't break anything. Arriving in class having *seen* these ideas move makes the session far easier.
+
 ---
 
 ## Step 1 — Try it (~20 min)
@@ -45,6 +47,8 @@ What kind of data makes neural networks shine instead? (One sentence — L08 wil
 **Q3. XOR by hand.**
 
 Can a single-layer perceptron learn the XOR function? Why or why not? (You don't need to compute it — a sentence is fine.)
+
+> *New to XOR?* It's the "exclusive or" rule: output 1 when **exactly one** of two inputs is 1, and 0 otherwise (so 0,0→0 · 1,0→1 · 0,1→1 · 1,1→0). We'll meet it properly in class — for now just think about whether one straight line could separate those answers.
 
 ---
 

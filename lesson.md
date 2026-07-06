@@ -1,6 +1,6 @@
 # Lesson — L07 Neural Networks & Deep Learning
 
-> **Chapter 7 of the NorthStar Retail story.** *Sarah Chen · Customer Experience Analyst · Mid-year.*
+> **Chapter 7 of the NorthStar Retail story.** *Sarah Chen · Customer Experience Analyst · Week 8.*
 > Marcus's brief from end-of-L06: *"Predict checkout completion from sequential customer behaviour — can a neural network do better than the L03/L04 baselines?"* Sarah opens `northstar_sessions.csv`: 8,000 customer sessions, 9 behavioural features, target = did they complete checkout.
 > This week she builds her first neural network — and writes a PyTorch training loop she will reuse for the rest of the course.
 
@@ -51,6 +51,39 @@ Before you accept a trained model's number — or change a hyperparameter in fru
 3. **Is the learning rate right?** A healthy loss curve drops fast at first, then bends and plateaus smoothly. A jagged or exploding curve means lr too high; a near-flat curve means lr too low. Try a 10× sweep (`1e-2`, `1e-3`, `1e-4`) before tuning anything else.
 
 Skip any of these and you'll either ship an undertrained model, an overfit one, or burn an afternoon tuning architecture when the real bug was the learning rate.
+
+---
+
+## Key concepts — plain-English review
+
+Use this as a self-check before the review questions: read each concept, and if any feels fuzzy, jump back to the notebook or section that teaches it.
+
+**Neuron / perceptron** — The smallest building block: it multiplies each input by a weight, adds them up, and passes the total through a simple yes/no-ish function. One neuron alone can only draw a straight-line boundary.
+*Real-world use:* An email filter's simplest form — add up spammy-word scores and flag the message if the total crosses a threshold.
+
+**Weights** — The numbers the network learns; each weight says how much one input matters. Training is just nudging weights until predictions improve.
+*Real-world use:* A bank's credit model learning that "missed payments" deserves a much bigger weight than "age of account".
+
+**Activation function** — A simple bend (like ReLU: "keep positives, zero out negatives") applied between layers. Without it, stacking layers adds nothing — the bend is what lets networks learn curvy, complex patterns.
+*Real-world use:* Recognising that risk isn't a straight line — a hospital readmission model where risk jumps sharply only past a certain age.
+
+**Hidden layers / MLP** — Stack neurons in layers (a multi-layer perceptron) and each layer builds on the last, letting the network learn patterns no single straight line can capture.
+*Real-world use:* Sarah's checkout-completion model at NorthStar, combining 9 session behaviours into one probability.
+
+**Loss function** — A single number that measures "how wrong were we?" on the training data. Training means making this number smaller.
+*Real-world use:* A ride-hailing app scoring its arrival-time predictions — every minute off adds to the loss it tries to shrink.
+
+**Gradient descent** — The learning method: check which direction makes the loss smaller, take a small step that way, repeat. Like walking downhill in fog, one step at a time.
+*Real-world use:* Any modern recommendation engine — Netflix's suggestions improve by millions of tiny downhill steps.
+
+**Learning rate** — The step size. Too big and you overshoot the valley and bounce around; too small and you crawl forever. The single most important dial to tune.
+*Real-world use:* Like adjusting a thermostat — turning it 10 degrees at a time overshoots; 0.1 degrees takes all day.
+
+**Backpropagation** — The bookkeeping trick that works out, for every weight in the network, how much it contributed to the error — so all weights can be nudged at once. PyTorch does it automatically.
+*Real-world use:* Post-mortem in a factory: tracing a defective product back through each station to see which step contributed how much to the fault.
+
+**Training loop and epochs** — The repeated cycle: predict, measure loss, compute nudges, update weights. One full pass through the training data is an epoch; training runs many epochs and stops when validation performance stops improving.
+*Real-world use:* A voice assistant retrained nightly runs this same loop; engineers watch the loss curve like a fitness tracker to know when to stop.
 
 ---
 
